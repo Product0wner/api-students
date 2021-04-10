@@ -7,21 +7,42 @@ module.exports = (sequelize) => {
     Course.init({
         title: {
             type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notNull: {
+                    msg: 'A title is required'
+                },
+                notEmpty: {
+                    msg: 'Please provide a valid course title'
+                }
+            }
         },
         description: {
             type: DataTypes.TEXT,
+            allowNull: false,
+            allowNull: false,
+            validate: {
+                notNull: {
+                    msg: 'A description is required'
+                },
+                notEmpty: {
+                    msg: 'Please provide a valid course description'
+                }
+            }
         },
         estimatedTime: {
-            type: DataTypes.STRING,  
+            type: DataTypes.STRING,
+            allowNull: true,
         },
         materialsNeeded: {
-            type: DataTypes.STRING,  
+            type: DataTypes.STRING,
+            allowNull: true,
         },
         userId: {
             type: DataTypes.INTEGER,
             foreignKey: {
               fieldName: "id",
-              allowNull: false,
+              allowNull: true,
             }
         },
     },
@@ -35,6 +56,6 @@ module.exports = (sequelize) => {
             allowNull: false,
           },
         });
-      };
+    };
     return Course;
 };
